@@ -17,7 +17,6 @@ module Mastodon
           nil
         end
       end
-
     end
   end
 end

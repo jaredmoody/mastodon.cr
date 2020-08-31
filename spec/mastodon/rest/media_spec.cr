@@ -5,9 +5,9 @@ describe Mastodon::REST::Media do
 
   describe "#media_upload" do
     before do
-      WebMock.stub(:post, "https://#{client.url}/api/v1/media").
-        with(headers: default_headers).
-        to_return(body: load_fixture("attachment"))
+      WebMock.stub(:post, "https://#{client.url}/api/v1/media")
+        .with(headers: default_headers)
+        .to_return(body: load_fixture("attachment"))
     end
 
     subject { client.media_upload(fixture_image("icon.png")) }

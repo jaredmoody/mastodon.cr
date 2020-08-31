@@ -3,8 +3,8 @@ require "oauth2"
 
 module Mastodon
   class Client
-    getter   url : String
-    getter!  access_token : OAuth2::AccessToken::Bearer?
+    getter url : String
+    getter! access_token : OAuth2::AccessToken::Bearer?
     property user_agent : String = "mastodon.cr/#{Mastodon::VERSION}"
 
     def initialize(url : String)

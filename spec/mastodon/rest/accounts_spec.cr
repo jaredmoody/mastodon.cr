@@ -25,9 +25,9 @@ describe Mastodon::REST::Accounts do
 
   describe "#update_credentials" do
     before do
-      WebMock.stub(:patch, "https://#{client.url}/api/v1/accounts/update_credentials").
-        with(headers: default_headers).
-        to_return(body: load_fixture("account"))
+      WebMock.stub(:patch, "https://#{client.url}/api/v1/accounts/update_credentials")
+        .with(headers: default_headers)
+        .to_return(body: load_fixture("account"))
     end
     subject { client.update_credentials(display_name: "DISPLAY_NAME") }
     it "is a Mastodon::Entities::Account" do
@@ -35,7 +35,7 @@ describe Mastodon::REST::Accounts do
     end
 
     describe "without parametors" do
-      subject { client.update_credentials() }
+      subject { client.update_credentials }
       it "raise HTTP::Multipart::Error" do
         expect { subject }.to raise_error(HTTP::Multipart::Error)
       end

@@ -3,28 +3,25 @@ require "json"
 module Mastodon
   module Entities
     class Attachment
-
       JSON.mapping({
-        id: Int64,
-        type: String, # "image", "video", "gifv"
-        url: String,
-        remote_url: { type: String, nilable: true },
+        id:          Int64,
+        type:        String, # "image", "video", "gifv"
+        url:         String,
+        remote_url:  {type: String, nilable: true},
         preview_url: String,
-        text_url: { type: String, nilable: true },
-        meta: { type: Hash(String, Attachment::MetaData), nilable: true },
+        text_url:    {type: String, nilable: true},
+        meta:        {type: Hash(String, Attachment::MetaData), nilable: true},
       })
 
       def_equals id
 
       class MetaData
-
         JSON.mapping({
-          width: Int32,
+          width:  Int32,
           height: Int32,
-          size: String,
+          size:   String,
           aspect: Float32,
         })
-
       end
     end
   end

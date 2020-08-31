@@ -25,7 +25,7 @@ module Mastodon
       def post_formdata(path : String, form_data : Utils::MultipartFormData)
         headers = HTTP::Headers{
           "Content-Length" => "#{form_data.size}",
-          "Content-Type" => "#{form_data.content_type}"
+          "Content-Type"   => "#{form_data.content_type}",
         }
         response = @http_client.post(path, headers.merge!(default_headers), form_data.io.to_slice)
         proccess_response(response)
@@ -41,7 +41,7 @@ module Mastodon
       def patch_formdata(path : String, form_data : Utils::MultipartFormData)
         headers = HTTP::Headers{
           "Content-Length" => "#{form_data.size}",
-          "Content-Type" => "#{form_data.content_type}"
+          "Content-Type"   => "#{form_data.content_type}",
         }
         response = @http_client.patch(path, headers.merge!(default_headers), form_data.io.to_slice)
         proccess_response(response)

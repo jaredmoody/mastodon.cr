@@ -6,12 +6,12 @@ describe Mastodon::REST::OAuth do
   describe "#get_access_token_using_username_password" do
     before do
       stub_post("/oauth/token", "access_token", {
-        "client_id" => "CLIENT_ID",
+        "client_id"     => "CLIENT_ID",
         "client_secret" => "CLIENT_SECRET",
-        "scope" => "read write",
-        "grant_type" => "password",
-        "username" => "USERNAME",
-        "password" => "PASSWORD"
+        "scope"         => "read write",
+        "grant_type"    => "password",
+        "username"      => "USERNAME",
+        "password"      => "PASSWORD",
       })
     end
     subject {
@@ -31,12 +31,12 @@ describe Mastodon::REST::OAuth do
   describe "#get_access_token_using_authorization_code" do
     before do
       stub_post("/oauth/token", "access_token", {
-        "client_id" => "CLIENT_ID",
+        "client_id"     => "CLIENT_ID",
         "client_secret" => "CLIENT_SECRET",
-        "scope" => "read write",
-        "grant_type" => "authorization_code",
-        "code" => "AUTHORIZATIO_CODE",
-        "redirect_uri" => "urn:ietf:wg:oauth:2.0:oob"
+        "scope"         => "read write",
+        "grant_type"    => "authorization_code",
+        "code"          => "AUTHORIZATIO_CODE",
+        "redirect_uri"  => "urn:ietf:wg:oauth:2.0:oob",
       })
     end
     subject {

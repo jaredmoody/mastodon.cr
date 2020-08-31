@@ -28,9 +28,9 @@ describe Mastodon::REST::Statuses do
 
   describe "#delete_status" do
     before do
-      WebMock.stub(:delete, "https://#{client.url}/api/v1/statuses/1").
-        with(headers: default_headers).
-        to_return(body: "{}")
+      WebMock.stub(:delete, "https://#{client.url}/api/v1/statuses/1")
+        .with(headers: default_headers)
+        .to_return(body: "{}")
     end
     subject { client.delete_status(1) }
     it "is no return" do
@@ -69,7 +69,6 @@ describe Mastodon::REST::Statuses do
     end
   end
   {% end %}
-
 
   {% for method in {"reblog", "unreblog", "favourite", "unfavourite"} %}
   describe "#" + "{{ method.id }}" do

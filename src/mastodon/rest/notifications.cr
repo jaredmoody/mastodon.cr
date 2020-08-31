@@ -30,7 +30,6 @@ module Mastodon
         post("#{NOTIFICATIONS_BASE}/clear")
         nil
       end
-
     end
   end
 end
