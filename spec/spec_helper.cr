@@ -1,9 +1,6 @@
-require "spec2"
+require "spec"
 require "webmock"
 require "../src/mastodon"
-
-include Spec2::GlobalDSL
-Spec2.doc
 
 # Utils
 def fixture_image(name)
@@ -42,4 +39,8 @@ def stub_post(path, fixture = nil, body : String | Hash(String, String) = "")
   WebMock.stub(:post, "https://example.com#{path}")
     .with(body: body, headers: headers.merge!(default_headers))
     .to_return(body: response_body)
+end
+
+def client
+  Mastodon::REST::Client.new("example.com", "token")
 end

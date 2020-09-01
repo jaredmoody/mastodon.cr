@@ -1,33 +1,31 @@
 require "../../spec_helper"
 
 describe Mastodon::REST::DomainBlocks do
-  let(client) { Mastodon::REST::Client.new("example.com", "token") }
-
   describe "#domain_blocks" do
-    before do
+    before_each do
       stub_get("/api/v1/domain_blocks", "domain_blocks")
     end
-    subject { client.domain_blocks }
+
     it "is a Array(String)" do
-      expect(subject).to be_a Array(String)
+      client.domain_blocks.should be_a Array(String)
     end
   end
 
   describe "#block_domain" do
-    before do
+    before_each do
       forms = HTTP::Params.build do |form|
         form.add "domain", "some.domain"
       end
       stub_post("/api/v1/domain_blocks", "domain_blocks", forms)
     end
-    subject { client.block_domain("some.domain") }
-    it "is a nil" do
-      expect(subject).to be_nil
+
+    it "returns nil" do
+      client.block_domain("some.domain").should be_nil
     end
   end
 
   describe "#unblock_domain" do
-    before do
+    before_each do
       forms = HTTP::Params.build do |form|
         form.add "domain", "some.domain"
       end
@@ -35,9 +33,9 @@ describe Mastodon::REST::DomainBlocks do
         .with(body: forms, headers: default_headers)
         .to_return(body: "{}")
     end
-    subject { client.unblock_domain("some.domain") }
-    it "is a nil" do
-      expect(subject).to be_nil
+
+    it "returns nil" do
+      client.unblock_domain("some.domain").should be_nil
     end
   end
 end

@@ -1,20 +1,18 @@
 require "../../spec_helper"
 
 describe Mastodon::REST::Reports do
-  let(client) { Mastodon::REST::Client.new("example.com", "token") }
-
   describe "#reports" do
-    before do
+    before_each do
       stub_get("/api/v1/reports", "reports")
     end
-    subject { client.reports }
+
     it "is a Mastodon::Collection(Mastodon::Entities::Report)" do
-      expect(subject).to be_a Mastodon::Collection(Mastodon::Entities::Report)
+      client.reports.should be_a Mastodon::Collection(Mastodon::Entities::Report)
     end
   end
 
   describe "#report" do
-    before do
+    before_each do
       forms = HTTP::Params.build do |form|
         form.add "account_id", "1"
         form.add "status_ids[]", "1"
@@ -24,9 +22,9 @@ describe Mastodon::REST::Reports do
       end
       stub_post("/api/v1/reports", "report", forms)
     end
-    subject { client.report(1, [1, 2, 3], "") }
+
     it "is a Mastodon::Entities::Report" do
-      expect(subject).to be_a Mastodon::Entities::Report
+      client.report(1, [1, 2, 3], "").should be_a Mastodon::Entities::Report
     end
   end
 end

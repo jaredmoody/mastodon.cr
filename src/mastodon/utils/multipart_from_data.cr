@@ -1,15 +1,15 @@
-require "http/multipart"
+require "mime/multipart"
 
 module Mastodon
   module Utils
     class MultipartFormData
-      @multipart : HTTP::Multipart::Builder
+      @multipart : MIME::Multipart::Builder
 
       getter io : IO::Memory
 
       def initialize
         @io = IO::Memory.new
-        @multipart = HTTP::Multipart::Builder.new(@io)
+        @multipart = MIME::Multipart::Builder.new(@io)
       end
 
       def add(name, string)

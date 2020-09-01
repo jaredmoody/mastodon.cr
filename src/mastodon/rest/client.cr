@@ -18,7 +18,7 @@ module Mastodon
       end
 
       def post(path : String, form : String | Hash(String, String) = "")
-        response = @http_client.post_form(path, form, default_headers)
+        response = @http_client.post(path, default_headers, form: form)
         proccess_response(response)
       end
 
